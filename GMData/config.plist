@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>github</key>
+	<dict>
+		<key>token</key>
+		<string>6874ed72c50598953689e444ab5258af85c3e972</string>
+		<key>owner</key>
+		<string>taontech</string>
+		<key>psw</key>
+		<string>fine_7git</string>
+		<key>reponame</key>
+		<string>MarkerlessAR</string>
+	</dict>
+	<key>gitlab</key>
+	<dict/>
+	<key>icescrum</key>
+	<dict>
+		<key>username</key>
+		<string>zhangbo</string>
+		<key>password</key>
+		<string>zhangbo1234</string>
+		<key>serverurl</key>
+		<string>work.dianshang.com.cn</string>
+		<key>pid</key>
+		<string>SZHST1</string>
+	</dict>
+	<key>New item</key>
+	<string></string>
+	<key>source</key>
+	<string>github</string>
+</dict>
+</plist>
