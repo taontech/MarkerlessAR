@@ -8,11 +8,11 @@
 #endif
 
 #import <Foundation/Foundation.h>
-#import <opencv2/imgcodecs/ios.h>
-#import <opencv2/imgproc.hpp>
-#import <opencv2/features2d.hpp>
-#import <opencv2/highgui.hpp>
-#import <opencv2/core/core.hpp>
+#import <opencv2/opencv.hpp>
+//#import <opencv2/imgproc.hpp>
+//#import <opencv2/features2d.hpp>
+//#import <opencv2/highgui.hpp>
+//#import <opencv2/core/core.hpp>
 
 #define IPAD_CAMERA_PARAM_FX 536.84710693359375
 #define IPAD_CAMERA_PARAM_FY 536.7637939453125
@@ -27,7 +27,7 @@
     cv::Mat _descrptPattern;
     
     // ORB Detector
-    cv::Ptr<cv::ORB> _detector;
+    cv::ORB _detector;
     
     // Flann Matcher
     cv::FlannBasedMatcher _matcher;
@@ -48,7 +48,7 @@
 }
 
 @property cv::Mat _descrptPattern;
-@property cv::Ptr<cv::ORB> _detector;
+@property cv::ORB _detector;
 @property cv::FlannBasedMatcher _matcher;
 @property cv::Mat _cameraParamMatrix;
 @property cv::Mat _cameraParamMatrixInvert;

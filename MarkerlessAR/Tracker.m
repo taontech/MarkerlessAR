@@ -14,7 +14,28 @@
     self._cameraParamMatrix = [self getCameraParamMatrix];
     
     // 初始化检测器
-    self._detector = cv::ORB::create();
+//    int nfeatures=500;
+//    float scaleFactor=1.2f;
+//    int nlevels=8;
+//    int edgeThreshold=15; // Changed default (31);
+//    int firstLevel=0;
+//    int WTA_K=2;
+//    int scoreType=cv::ORB::HARRIS_SCORE;
+//    int patchSize=31;
+//    int fastThreshold=20;
+//    
+//    cv::ORB detector = cv::ORB::create(
+//                                    nfeatures,
+//                                    scaleFactor,
+//                                    nlevels,
+//                                    edgeThreshold,
+//                                    firstLevel,
+//                                    WTA_K,
+//                                    scoreType,
+//                                    patchSize,
+//                                    fastThreshold );
+    // cv::ORB ptt = *new cv::ORB;
+    self._detector = cv::ORB();
     
     self._isTracking = false;
     
@@ -49,8 +70,9 @@
     cv::Mat imgPattern = cv::imread(cpath, cv::IMREAD_GRAYSCALE);
     
     // 检测特征点并计算描述子
-    self._detector->detectAndCompute(imgPattern, cv::noArray(), _keyPtPattern, _descrptPattern);
-    
+    // self._detector->detectAndCompute(imgPattern, cv::noArray(), _keyPtPattern, _descrptPattern);
+    // self._detector->compute(imgPattern, cv::noArray(), _descrptPattern);
+    (self._detector)(imgPattern, cv::noArray(), _keyPtPattern, _descrptPattern);
     /*
     // 训练描述子匹配器
     self._matcher.clear();
@@ -73,7 +95,7 @@
     // 检测特征点并计算描述子
     std::vector<cv::KeyPoint> keyPtFrame;
     cv::Mat descrptFrame;
-    self._detector->detectAndCompute(grayFrame, cv::noArray(), keyPtFrame, descrptFrame);
+    (self._detector)(grayFrame, cv::noArray(), keyPtFrame, descrptFrame);
     
     // knn匹配
     std::vector<cv::DMatch> matches;
@@ -86,6 +108,7 @@
         _descrptPattern.convertTo(_descrptPattern, CV_32F);
     }
     
+    // knn算法匹配
     [self knnMatchBetweenPattern:_descrptPattern andFrame:descrptFrame into:matches];
     
     // Homography
@@ -144,12 +167,12 @@
     cv::Mat warpedFrame;
     
     // 变换图像
-    cv::warpPerspective(grayFrame, warpedFrame, H, cvSize(640.0, 480.0), cv::WARP_INVERSE_MAP | cv::INTER_CUBIC);
+    cv::warpPerspective(grayFrame, warpedFrame, H, cvSize(480.0, 640.0), cv::WARP_INVERSE_MAP | cv::INTER_CUBIC);
     
     // 检测特征点并计算描述子
     std::vector<cv::KeyPoint> keyPtWarpedFrame;
     cv::Mat descrptWarpedFrame;
-    self._detector->detectAndCompute(warpedFrame, cv::noArray(), keyPtWarpedFrame, descrptWarpedFrame);
+    (self._detector)(warpedFrame, cv::noArray(), keyPtWarpedFrame, descrptWarpedFrame);
     
     // knn匹配
     std::vector<cv::DMatch> matches;
@@ -239,9 +262,9 @@
     std::vector<cv::Point2f> points_2D_frame(4);
     std::vector<cv::Point3f> points_3D_pattern(4);
     points_2D_pattern[0] = cv::Point2f(0.0, 0.0);
-    points_2D_pattern[1] = cv::Point2f(640.0, 0.0);
-    points_2D_pattern[2] = cv::Point2f(640.0, 480.0);
-    points_2D_pattern[3] = cv::Point2f(0.0, 480.0);
+    points_2D_pattern[1] = cv::Point2f(480.0, 0.0);
+    points_2D_pattern[2] = cv::Point2f(480.0, 640.0);
+    points_2D_pattern[3] = cv::Point2f(0.0, 640.0);
     cv::perspectiveTransform(points_2D_pattern, points_2D_frame, H);
     points_3D_pattern[0] = cv::Point3f(-1.0, -0.75, 0.5);
     points_3D_pattern[1] = cv::Point3f(1.0, -0.75, 0.5);

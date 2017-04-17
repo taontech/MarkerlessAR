@@ -211,8 +211,8 @@ GLfloat _texcoords[] = {
     float fy = 536.7637939453125;
     float cx = 316.23187255859375;
     float cy = 223.457733154296875;
-    float width = 640.0;
-    float height = 480.0;
+    float width = 480.0;
+    float height = 640.0;
     float near = 0.001;
     float far = 100.0;
     

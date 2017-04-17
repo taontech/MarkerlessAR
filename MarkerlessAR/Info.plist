@@ -28,6 +28,8 @@
 	</array>
 	<key>UIStatusBarHidden~ipad</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>xxx</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeRight</string>

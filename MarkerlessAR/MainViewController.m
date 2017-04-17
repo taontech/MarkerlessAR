@@ -25,7 +25,7 @@
     
     // 初始化Tracker
     self._tracker = [[Tracker alloc] init];
-    [self._tracker trainPattern:@"Pattern"];
+    [self._tracker trainPattern:@"xingxing"];
     
     // 初始化GL层
     self._glVC = [[GLViewController alloc] initWithGLKView:self._glView];

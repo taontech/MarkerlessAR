@@ -25,9 +25,9 @@
             [_captureSession setSessionPreset:AVCaptureSessionPreset640x480];
             NSLog(@"Set capture session preset AVCaptureSessionPreset640x480");
             
-        } else if ([_captureSession canSetSessionPreset:AVCaptureSessionPresetLow]) {
+        } else if ([_captureSession canSetSessionPreset:AVCaptureSessionPresetHigh]) {
             
-            [_captureSession setSessionPreset:AVCaptureSessionPresetLow];
+            [_captureSession setSessionPreset:AVCaptureSessionPresetHigh];
             NSLog(@"Set capture session preset AVCaptureSessionPresetLow");
         }
     }
@@ -128,7 +128,7 @@
 #pragma -mark AVCaptureOutput delegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
     
-    [connection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
+    [connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
     CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     
     CVPixelBufferLockBaseAddress(pixelBuffer, 0);
@@ -141,7 +141,7 @@
 
 - (NSUInteger) supportedInterfaceOrientations {
     
-    return UIInterfaceOrientationMaskLandscapeRight;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end
